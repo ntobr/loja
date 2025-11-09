@@ -1,0 +1,442 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NTO — Loja Oficial | ciência, ética e cuidado</title>
+  <meta name="description" content="Loja oficial da NTO Brasil. Cartilhas digitais em saúde mental, cursos em pré‑venda e vouchers de atendimento. Pagamento via Pix e cartão. Acesso imediato por e‑mail." />
+  <link rel="canonical" href="https://loja.ntobr.com/" />
+  <meta property="og:title" content="NTO — Loja Oficial" />
+  <meta property="og:description" content="Cartilhas digitais, cursos (pré‑venda) e vouchers. Pagamento via Pix e cartão." />
+  <meta property="og:url" content="https://loja.ntobr.com/" />
+  <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#0a0a0a" />
+  <style>
+    :root { --bg:#0a0a0a; --card:#121212; --muted:#9aa1a7; --text:#f5f7fb; --ok:#34d399; --border:#262626; --brand-1:#c084fc; --brand-2:#60a5fa; --brand-3:#34d399; }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,"Noto Sans";background:radial-gradient(1200px 600px at 10% -10%,rgba(96,165,250,.12),transparent 60%),radial-gradient(1000px 500px at 90% -20%,rgba(192,132,252,.15),transparent 60%),var(--bg);color:var(--text)}
+    a{color:inherit;text-decoration:none}
+    .container{width:min(1100px,92%);margin:0 auto}
+
+    /* Botões globais (CTA, .btn, chips) */
+    .cta,.btn,.chip{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:10px 14px;border-radius:12px;font-weight:700;cursor:pointer;border:1px solid var(--border);background:rgba(255,255,255,.05);color:var(--text);transition:all .25s ease-in-out;position:relative;user-select:none}
+    .cta:hover,.btn:hover,.chip:hover{background:rgba(255,255,255,.1)}
+    .btn.primary,.cta.primary{background:linear-gradient(90deg,rgba(96,165,250,.18),rgba(192,132,252,.18))}
+    .btn.ghost,.cta.ghost{background:none;border-color:rgba(255,255,255,.15);color:var(--muted)}
+    .btn.ghost:hover,.cta.ghost:hover{color:var(--text);border-color:rgba(255,255,255,.35)}
+
+    /* Estado ativo com check */
+    .btn[data-active="true"],.chip[data-active="true"],.cta[data-active="true"]{border-color:var(--brand-2);box-shadow:0 0 8px rgba(96,165,250,.4);background:rgba(96,165,250,.15);animation:pop 160ms ease-out}
+    .btn[data-active="true"]::before,.chip[data-active="true"]::before,.cta[data-active="true"]::before{content:'✔';position:absolute;left:10px;font-size:14px;color:var(--brand-3)}
+    /* Para CTAs que não devem exibir check */
+    .cta[data-noactive="true"]::before{content:none}
+
+    /* Feedback de clique/toque */
+    .press{transform:scale(.97)}
+    @keyframes pop{0%{transform:scale(.98)}60%{transform:scale(1.02)}100%{transform:scale(1)}}
+    @media (prefers-reduced-motion:reduce){*{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}}
+
+    /* Layout */
+    header{position:sticky;top:0;z-index:50;backdrop-filter:saturate(150%) blur(10px);background:rgba(10,10,10,.7);border-bottom:1px solid var(--border)}
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0;gap:16px}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:700;letter-spacing:.3px}
+    .brand-badge{width:36px;height:36px;border-radius:999px;position:relative;display:inline-block;flex-shrink:0;background:conic-gradient(from 0deg,#ff6b6b,#f7d046,#3ddc97,#4dabf7,#b197fc,#ff6b6b);box-shadow:0 0 16px rgba(192,132,252,.45),0 0 40px rgba(96,165,250,.25)}
+    .brand-badge::after{content:"";position:absolute;inset:6px;border-radius:999px;background:var(--bg)}
+    .nav-links{display:flex;gap:18px;font-size:15px;color:var(--muted)}
+    .nav-links a:hover{color:var(--text)}
+
+    .hero{padding:40px 0 18px}
+    .hero-inner{display:grid;grid-template-columns:1.15fr .85fr;gap:24px;align-items:center}
+    @media (max-width:900px){.hero-inner{grid-template-columns:1fr}}
+    .kicker{color:var(--muted);font-size:14px;letter-spacing:.2px;margin-bottom:10px}
+    h1{font-size:clamp(28px,4vw,42px);margin:6px 0 12px;line-height:1.15}
+    .lead{color:#e7ebf1;font-size:clamp(16px,2vw,18px);opacity:.92}
+    .hero-card{border:1px solid var(--border);background:linear-gradient(180deg,rgba(18,18,18,.85),rgba(12,12,12,.85));border-radius:16px;padding:18px}
+    .hero-card h3{margin:8px 0 6px;font-size:16px}
+    .hero-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    @media (max-width:700px){.hero-grid{grid-template-columns:1fr}}
+
+    .filters{margin:10px 0 18px;display:flex;flex-wrap:wrap;gap:10px}
+
+    .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+    @media (max-width:1100px){.grid{grid-template-columns:repeat(3,1fr)}}
+    @media (max-width:800px){.grid{grid-template-columns:repeat(2,1fr)}}
+    @media (max-width:540px){.grid{grid-template-columns:1fr}}
+
+    .card{border:1px solid var(--border);background:var(--card);border-radius:16px;overflow:hidden;display:flex;flex-direction:column}
+    .thumb{aspect-ratio:16/11;background:linear-gradient(135deg,rgba(96,165,250,.2),rgba(192,132,252,.2));position:relative}
+    .badge{position:absolute;top:10px;left:10px;background:rgba(0,0,0,.6);border:1px solid var(--border);color:#fff;font-size:12px;padding:6px 8px;border-radius:999px}
+    .content{padding:14px;display:flex;flex-direction:column;gap:8px}
+    .title{font-weight:700;font-size:16px}
+    .meta{color:var(--muted);font-size:13px}
+    .price{font-size:18px;font-weight:800;background:linear-gradient(90deg,var(--brand-1),var(--brand-2),var(--brand-3));-webkit-background-clip:text;background-clip:text;color:transparent}
+    .actions{margin-top:6px;display:flex;gap:10px}
+
+    .section{margin:28px 0 20px;display:flex;align-items:baseline;justify-content:space-between;gap:10px}
+    .section h2{margin:0;font-size:clamp(20px,3vw,28px)}
+    .section p{color:var(--muted);margin:0;font-size:14px}
+
+    .banner{border:1px dashed rgba(96,165,250,.35);border-radius:16px;padding:14px;background:linear-gradient(180deg,rgba(13,15,20,.7),rgba(11,13,18,.7));display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
+
+    footer{margin:40px 0 30px;color:var(--muted);font-size:13px}
+    .foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:16px}
+    @media (max-width:800px){.foot-grid{grid-template-columns:1fr}}
+    .small{font-size:12px;color:var(--muted)}
+    .legal{border-top:1px solid var(--border);margin-top:18px;padding-top:12px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+  </style>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const chips = document.querySelectorAll('.chip');
+      const cards = document.querySelectorAll('[data-tags]');
+
+      // Ativa/desativa chips com check persistente
+      chips.forEach(chip => {
+        chip.addEventListener('pointerdown', () => chip.classList.add('press'));
+        ['pointerup','pointerleave','pointercancel'].forEach(ev => chip.addEventListener(ev, () => chip.classList.remove('press')));
+        chip.addEventListener('click', () => {
+          const t = chip.dataset.tag;
+          const active = chip.dataset.active === 'true';
+          chip.dataset.active = active ? 'false' : 'true';
+          // filtrar
+          const activeTags = [...document.querySelectorAll('.chip[data-active="true"]')].map(c => c.dataset.tag);
+          cards.forEach(c => {
+            if (!activeTags.length) { c.style.display = ''; return; }
+            const ct = (c.dataset.tags||'').split(',');
+            c.style.display = activeTags.every(tg => ct.includes(tg)) ? '' : 'none';
+          });
+        });
+        chip.addEventListener('keydown', e => { if(e.key===' '||e.key==='Enter'){ e.preventDefault(); chip.click(); }});
+      });
+
+      // Botões de compra (primários): check temporário + WhatsApp
+      const whatsBtns = document.querySelectorAll('[data-whats]');
+      whatsBtns.forEach(btn => {
+        btn.addEventListener('pointerdown', () => btn.classList.add('press'));
+        ['pointerup','pointerleave','pointercancel'].forEach(ev => btn.addEventListener(ev, () => btn.classList.remove('press')));
+        btn.addEventListener('click', () => {
+          // check temporário 1.2s
+          btn.dataset.active = 'true';
+          setTimeout(() => { btn.dataset.active = 'false'; }, 1200);
+          const nome = encodeURIComponent(btn.dataset.name || 'Produto NTO');
+          const url = `https://wa.me/5561999999999?text=Olá%20NTO!%20Quero%20comprar:%20${nome}`;
+          window.open(url, '_blank');
+        });
+      });
+
+      // CTAs do header: pulso, sem check (não alterna estado)
+      const headerCtas = document.querySelectorAll('.cta[data-noactive="true"]');
+      headerCtas.forEach(cta => {
+        cta.addEventListener('pointerdown', () => cta.classList.add('press'));
+        ['pointerup','pointerleave','pointercancel'].forEach(ev => cta.addEventListener(ev, () => cta.classList.remove('press')));
+      });
+    });
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Organization","name":"NTO Brasil","url":"https://ntobr.com/","sameAs":["https://www.instagram.com/ntobr/"],"logo":"https://loja.ntobr.com/assets/logo-nto.png"}
+  </script>
+</head>
+<body>
+  <a class="sr-only" href="#conteudo">Ir para conteúdo</a>
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <span class="brand-badge" aria-hidden="true"></span>
+        <a href="https://ntobr.com/" aria-label="Ir para NTO — Brasil"><span>NTO — Loja</span></a>
+      </div>
+      <nav class="nav-links" aria-label="Navegação principal">
+        <a href="#produtos">Produtos</a>
+        <a href="#categorias">Categorias</a>
+        <a href="#pagamento">Pagamento</a>
+        <a href="#contato">Contato</a>
+      </nav>
+      <a class="cta primary" data-noactive="true" href="https://wa.me/5561999999999" target="_blank" rel="noopener">Fale no WhatsApp</a>
+    </div>
+  </header>
+
+  <main id="conteudo" class="container">
+    <section class="hero" aria-labelledby="titulo-hero">
+      <div class="hero-inner">
+        <div>
+          <div class="kicker">ciência, ética e cuidado</div>
+          <h1 id="titulo-hero">Loja Oficial da NTO</h1>
+          <p class="lead">Infoprodutos em saúde mental: <strong>cartilhas digitais</strong>, <strong>cursos (pré‑venda)</strong> e <strong>vouchers</strong> para atendimentos.</p>
+          <div class="filters" id="categorias">
+            <button class="chip" data-tag="livros">Livros & E‑books</button>
+            <button class="chip" data-tag="cartilhas">Cartilhas</button>
+            <button class="chip" data-tag="cursos">Cursos (pré‑venda)</button>
+            <button class="chip" data-tag="vouchers">Vouchers de atendimento</button>
+          </div>
+        </div>
+        <div class="hero-card">
+          <div class="hero-grid">
+            <div>
+              <div class="chip" data-active="true" aria-hidden="true">✔ Acesso imediato</div>
+              <h3>Digital e prático</h3>
+              <p class="small">Cartilhas em PDF e vouchers chegam por e‑mail. Cursos em pré‑venda.</p>
+            </div>
+            <div>
+              <div class="chip" aria-hidden="true">Certificado</div>
+              <h3>Qualidade NTO</h3>
+              <p class="small">Conteúdo responsável e baseado em evidências.</p>
+            </div>
+            <div>
+              <div class="chip" aria-hidden="true">Pix & Cartão</div>
+              <h3>Compra segura</h3>
+              <p class="small">Processamento por parceiro certificado. Nota fiscal disponível.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="produtos">
+      <h2>Infoprodutos em destaque</h2>
+      <p>Catálogo inicial focado em materiais digitais. Livros/e‑books: em breve.</p>
+    </section>
+
+    <section class="grid" aria-label="Lista de produtos">
+      <!-- CARTILHAS (somente digitais) -->
+      <article class="card" data-tags="cartilhas">
+        <div class="thumb" role="img" aria-label="Cartilha Redução de Danos"></div>
+        <div class="content">
+          <div class="title">Cartilha: Redução de Danos no Uso de Substâncias (PDF)</div>
+          <div class="meta">Cartilha digital • Download imediato</div>
+          <div class="price">R$ 39,00</div>
+          <div class="actions">
+            <button class="btn primary" data-whats data-name="Cartilha: Redução de Danos no Uso de Substâncias (PDF)">Comprar via WhatsApp</button>
+            <button class="btn ghost" type="button">Sumário</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="card" data-tags="cartilhas">
+        <div class="thumb" role="img" aria-label="Cartilha Ansiedade"></div>
+        <div class="content">
+          <div class="title">Cartilha: Transtornos de Ansiedade — manejo clínico e autocuidado</div>
+          <div class="meta">Cartilha digital • PDF</div>
+          <div class="price">R$ 34,00</div>
+          <div class="actions">
+            <button class="btn primary" data-whats data-name="Cartilha: Transtornos de Ansiedade — manejo clínico e autocuidado">Comprar via WhatsApp</button>
+            <button class="btn ghost" type="button">Sumário</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="card" data-tags="cartilhas">
+        <div class="thumb" role="img" aria-label="Cartilha Depressão"></div>
+        <div class="content">
+          <div class="title">Cartilha: Depressão — guia prático para pacientes e familiares</div>
+          <div class="meta">Cartilha digital • PDF</div>
+          <div class="price">R$ 34,00</div>
+          <div class="actions">
+            <button class="btn primary" data-whats data-name="Cartilha: Depressão — guia prático para pacientes e familiares">Comprar via WhatsApp</button>
+            <button class="btn ghost" type="button">Sumário</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="card" data-tags="cartilhas">
+        <div class="thumb" role="img" aria-label="Cartilha TDAH Adulto"></div>
+        <div class="content">
+          <div class="title">Cartilha: TDAH em Adultos — diagnóstico e estratégias de foco</div>
+          <div class="meta">Cartilha digital • PDF</div>
+          <div class="price">R$ 42,00</div>
+          <div class="actions">
+            <button class="btn primary" data-whats data-name="Cartilha: TDAH em Adultos — diagnóstico e estratégias de foco">Comprar via WhatsApp</button>
+            <button class="btn ghost" type="button">Sumário</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="card" data-tags="cartilhas">
+        <div class="thumb" role="img" aria-label="Cartilha Bipolar"></div>
+        <div class="content">
+          <div class="title">Cartilha: Transtorno Bipolar — estabilização e prevenção de recaídas</div>
+          <div class="meta">Cartilha digital • PDF</div>
+          <div class="price">R$ 44,00</div>
+          <div class="actions">
+            <button class="btn primary" data-whats data-name="Cartilha: Transtorno Bipolar — estabilização e prevenção de recaídas">Comprar via WhatsApp</button>
+            <button class="btn ghost" type="button">Sumário</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="card" data-tags="cartilhas">
+        <div class="thumb" role="img" aria-label="Cartilha Sono"></div>
+        <div class="content">
+          <div class="title">Cartilha: Higiene do Sono e Insônia — protocolo prático</div>
+          <div class="meta">Cartilha digital • PDF</div>
+          <div class="price">R$ 29,00</div>
+          <div class="actions">
+            <button class="btn primary" data-whats data-name="Cartilha: Higiene do Sono e Insônia — protocolo prático">Comprar via WhatsApp</button>
+            <button class="btn ghost" type="button">Sumário</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="card" data-tags="cartilhas">
+        <div class="thumb" role="img" aria-label="Cartilha Estimulantes"></div>
+        <div class="content">
+          <div class="title">Cartilha: Uso Responsável de Estimulantes — segurança e titulação</div>
+          <div class="meta">Cartilha digital • PDF</div>
+          <div class="price">R$ 39,00</div>
+          <div class="actions">
+            <button class="btn primary" data-whats data-name="Cartilha: Uso Responsável de Estimulantes — segurança e titulação">Comprar via WhatsApp</button>
+            <button class="btn ghost" type="button">Sumário</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="card" data-tags="cartilhas">
+        <div class="thumb" role="img" aria-label="Cartilha Cannabis"></div>
+        <div class="content">
+          <div class="title">Cartilha: Cannabis Medicinal — evidências, doses e redução de danos</div>
+          <div class="meta">Cartilha digital • PDF</div>
+          <div class="price">R$ 44,00</div>
+          <div class="actions">
+            <button class="btn primary" data-whats data-name="Cartilha: Cannabis Medicinal — evidências, doses e redução de danos">Comprar via WhatsApp</button>
+            <button class="btn ghost" type="button">Sumário</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="card" data-tags="cartilhas">
+        <div class="thumb" role="img" aria-label="Cartilha Prevenção de recaídas"></div>
+        <div class="content">
+          <div class="title">Cartilha: Prevenção de Recaídas — plano de segurança pessoal</div>
+          <div class="meta">Cartilha digital • PDF</div>
+          <div class="price">R$ 34,00</div>
+          <div class="actions">
+            <button class="btn primary" data-whats data-name="Cartilha: Prevenção de Recaídas — plano de segurança pessoal">Comprar via WhatsApp</button>
+            <button class="btn ghost" type="button">Sumário</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="card" data-tags="cartilhas">
+        <div class="thumb" role="img" aria-label="Cartilha Cuidadores"></div>
+        <div class="content">
+          <div class="title">Cartilha: Autocuidado para Cuidadores — burnout e limites saudáveis</div>
+          <div class="meta">Cartilha digital • PDF</div>
+          <div class="price">R$ 32,00</div>
+          <div class="actions">
+            <button class="btn primary" data-whats data-name="Cartilha: Autocuidado para Cuidadores — burnout e limites saudáveis">Comprar via WhatsApp</button>
+            <button class="btn ghost" type="button">Sumário</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="card" data-tags="cartilhas">
+        <div class="thumb" role="img" aria-label="Cartilha Luto"></div>
+        <div class="content">
+          <div class="title">Cartilha: Luto — navegando perdas e reconstruindo rotinas</div>
+          <div class="meta">Cartilha digital • PDF</div>
+          <div class="price">R$ 29,00</div>
+          <div class="actions">
+            <button class="btn primary" data-whats data-name="Cartilha: Luto — navegando perdas e reconstruindo rotinas">Comprar via WhatsApp</button>
+            <button class="btn ghost" type="button">Sumário</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="card" data-tags="cartilhas">
+        <div class="thumb" role="img" aria-label="Cartilha Psicodélicos"></div>
+        <div class="content">
+          <div class="title">Cartilha: Psicodélicos — fundamentos de psicofarmacologia clínica</div>
+          <div class="meta">Cartilha digital • PDF</div>
+          <div class="price">R$ 49,00</div>
+          <div class="actions">
+            <button class="btn primary" data-whats data-name="Cartilha: Psicodélicos — fundamentos de psicofarmacologia clínica">Comprar via WhatsApp</button>
+            <button class="btn ghost" type="button">Sumário</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- CURSOS (pré-venda) -->
+      <article class="card" data-tags="cursos">
+        <div class="thumb"><span class="badge">Pré‑venda</span></div>
+        <div class="content">
+          <div class="title">Curso breve: Psicofarmacologia dos Psicodélicos</div>
+          <div class="meta">Pré‑venda • Início previsto: sob demanda • Certificado</div>
+          <div class="price">R$ 490,00</div>
+          <div class="actions">
+            <button class="btn primary" data-whats data-name="Curso breve: Psicofarmacologia dos Psicodélicos (Pré‑venda)">Reservar vaga</button>
+            <button class="btn ghost" type="button">Programa</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- VOUCHERS -->
+      <article class="card" data-tags="vouchers">
+        <div class="thumb"></div>
+        <div class="content">
+          <div class="title">Voucher: Triagem Clínica (teleconsulta)</div>
+          <div class="meta">30–45 min • Equipe NTO • Agendamento por e‑mail</div>
+          <div class="price">R$ 280,00</div>
+          <div class="actions">
+            <button class="btn primary" data-whats data-name="Voucher: Triagem Clínica (teleconsulta)">Comprar voucher</button>
+            <a class="btn ghost" href="mailto:admn@ntobr.com">Dúvidas</a>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section class="section" id="pagamento">
+      <h2>Pagamento e acesso digital</h2>
+      <p>Pix, cartão de crédito, boleto e link de pagamento. Após confirmação, o <strong>acesso é liberado por e‑mail</strong>. Vouchers também chegam por e‑mail para agendamento.</p>
+    </section>
+
+    <div class="banner">
+      <div>
+        <strong>Tem urgência?</strong>
+        <div class="small">Para assuntos clínicos, entre em contato por e‑mail. Evite dados sensíveis sem canal seguro.</div>
+      </div>
+      <a class="btn ghost" href="mailto:admn@ntobr.com">admn@ntobr.com</a>
+    </div>
+
+    <section class="section" id="faq">
+      <h2>Perguntas frequentes</h2>
+      <p class="small">Um resumo prático. Para mais detalhes, consulte o site principal.</p>
+    </section>
+    <details class="banner"><summary>Como recebo um item digital?</summary><div class="small">Após confirmação do pagamento, você receberá um e‑mail com link seguro de download. Guarde o arquivo localmente.</div></details>
+    <details class="banner"><summary>Como funciona o voucher de atendimento?</summary><div class="small">Você adquire o voucher, recebe o comprovante por e‑mail e nossa equipe retorna para agendar a triagem. Em caso de não utilização, o reembolso segue o CDC em até 7 dias.</div></details>
+    <details class="banner"><summary>Posso pedir reembolso?</summary><div class="small">Seguindo o CDC, há até <strong>7 dias</strong> para arrependimento em compras on‑line. Para infoprodutos, o acesso poderá ser revogado ao efetivar o reembolso. Casos específicos são avaliados pelo suporte.</div></details>
+
+    <footer id="contato">
+      <div class="foot-grid">
+        <div>
+          <div class="brand" style="margin-bottom:8px;">
+            <span class="brand-badge" aria-hidden="true"></span>
+            <span>NTO — Loja</span>
+          </div>
+          <div class="small">Conteúdo educacional. Não substitui avaliação médica. Para emergências: 188 (CVV) ou 192 (SAMU).</div>
+        </div>
+        <div>
+          <div class="small">Atendimento</div>
+          <ul class="small" style="list-style:none;padding:0;margin:8px 0 0;display:grid;gap:6px;">
+            <li><a href="mailto:admn@ntobr.com">admn@ntobr.com</a></li>
+            <li><a href="https://ntobr.com/" target="_blank" rel="noopener">Site principal</a></li>
+            <li><a href="https://instagram.com/ntobr" target="_blank" rel="noopener">Instagram</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="small">Institucional</div>
+          <ul class="small" style="list-style:none;padding:0;margin:8px 0 0;display:grid;gap:6px;">
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#pagamento">Pagamento</a></li>
+            <li><a href="#">Política de privacidade</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="legal">
+        <span class="small">© <span id="year"></span> NTO. Todos os direitos reservados.</span>
+        <span class="small">LGPD: dados de compra tratados conforme finalidade e por tempo mínimo necessário.</span>
+      </div>
+      <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+    </footer>
+  </main>
+</body>
+</html>
